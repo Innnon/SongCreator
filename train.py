@@ -11,10 +11,10 @@ from model_manager import *
 from RNN import RNN
 from Tokenizer import *
 
-_VOCABULARY_SIZE = int(os.environ.get('VOCABULARY_SIZE', '8000'))
+_VOCABULARY_SIZE = int(os.environ.get('VOCABULARY_SIZE', '5000'))
 _HIDDEN_DIM = int(os.environ.get('HIDDEN_DIM', '80'))
 _LEARNING_RATE = float(os.environ.get('LEARNING_RATE', '0.005'))
-_NEPOCH = int(os.environ.get('NEPOCH', '2'))
+_NEPOCH = int(os.environ.get('NEPOCH', '20'))
 _MODEL_FILE = os.environ.get('MODEL_FILE')
 
 
@@ -44,6 +44,9 @@ def train_with_sgd(model, X_train, y_train, learning_rate=0.005, nepoch=1, evalu
             # One SGD step
             model.sgd_step(X_train[i], y_train[i], learning_rate)
             num_examples_seen += 1
+            print (i)
+
+        print (epoch)
 
 
 
