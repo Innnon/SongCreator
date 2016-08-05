@@ -1,7 +1,7 @@
 from train import *
 
 
-_VOCABULARY_SIZE = int(os.environ.get('VOCABULARY_SIZE', '4000'))
+_VOCABULARY_SIZE = int(os.environ.get('VOCABULARY_SIZE', '5000'))
 
 
 song_lyrics = get_lyrics()
