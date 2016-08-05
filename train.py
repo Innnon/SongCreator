@@ -11,7 +11,7 @@ from model_manager import *
 from RNN import RNN
 from Tokenizer import *
 
-_VOCABULARY_SIZE = int(os.environ.get('VOCABULARY_SIZE', '6000'))
+_VOCABULARY_SIZE = int(os.environ.get('VOCABULARY_SIZE', '8000'))
 _HIDDEN_DIM = int(os.environ.get('HIDDEN_DIM', '80'))
 _LEARNING_RATE = float(os.environ.get('LEARNING_RATE', '0.005'))
 _NEPOCH = int(os.environ.get('NEPOCH', '20'))

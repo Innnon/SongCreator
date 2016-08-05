@@ -1,7 +1,7 @@
 from train import *
 from diff import  *
 from Tokenizer import  *
-_VOCABULARY_SIZE = int(os.environ.get('VOCABULARY_SIZE', '6000'))
+_VOCABULARY_SIZE = int(os.environ.get('VOCABULARY_SIZE', '8000'))
 
 
 song_lyrics = get_lyrics()
