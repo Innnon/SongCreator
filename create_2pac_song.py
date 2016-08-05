@@ -23,7 +23,9 @@ for i in range(num_sentences):
     while len(sent) < senten_min_length:
         sent = generate_sentence(model,word_to_index, index_to_word)
     print " ".join(sent)
-    song += sent + "\n"
+    for word in sent:
+        song += word + " "
+    song += "\n"
 
 newSong = open ("outputsong.txt", "wb")
 newSong.write(song)
