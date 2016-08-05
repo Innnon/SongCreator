@@ -14,33 +14,40 @@ replace_word_not_in_vocabulary(word_to_index,tokenized_sentences)
 
 
 num_sentences = 38
-senten_min_length = 4
+senten_min_length = 6
 model = getModel(tokenized_sentences, word_to_index)
 song = ""
 list_song = []
 
 sent = generate_sentence(model,word_to_index, index_to_word, song_start_token, sentence_end_token)
-list_song.append(sent)
-for word in sent:
-    song += word + " "
-song += "\n"
 
+ssent = ""
+for word in sent:
+    ssent += word + " "
+song += ssent + "\n"
+list_song.append(ssent)
+
+
+print ("start iteration")
 for i in range(num_sentences):
     sent = []
+    ssent =""
     # We want long sentences, not sentences with one or two words
     while len(sent) < senten_min_length:
         sent = generate_sentence(model,word_to_index, index_to_word, sentence_start_token, sentence_end_token)
     print " ".join(sent)
-    list_song.append(sent)
     for word in sent:
-        song += word + " "
-    song += "\n"
+        ssent += word + " "
+    list_song.append(ssent)
+    song += ssent + "\n"
 
+print ("finish iteration")
 sent = generate_sentence(model,word_to_index, index_to_word, sentence_start_token, song_end_token)
-list_song.append(sent)
+ssent = ""
 for word in sent:
-    song += word + " "
-song += "\n"
+    ssent += word + " "
+song += ssent + "\n"
+list_song.append(ssent)
 
 print (song)
 newSong = open ("outputsong.txt", "wb")
