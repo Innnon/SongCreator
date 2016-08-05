@@ -28,6 +28,8 @@ song += ssent + "\n"
 list_song.append(ssent)
 
 
+
+
 print ("start iteration")
 for i in range(num_sentences):
     sent = []
