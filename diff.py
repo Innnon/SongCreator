@@ -18,6 +18,7 @@ def get_cosine(vec1, vec2):
 
 
 def text_to_vector(text):
+    print (text)
     words = WORD.findall(text)
     return Counter(words)
 
@@ -28,7 +29,7 @@ def calculate_cosine(sen, senArray):
     similiar = 0
     vector1 = text_to_vector(sen)
     for sentence in senArray:
-        vector2 = text_to_vector(sentence)
+        vector2 = text_to_vector(str(sentence))
         cosine = get_cosine(vector1, vector2)
         if (cosine > similiar):
             similiar = cosine
@@ -40,7 +41,8 @@ def calculate_cosine_for_song(song, lyrics):
     sum = 0
 
     for row in song:
-        max = calculate_cosine(row, lyrics)
+        print (row)
+        max = calculate_cosine(str(row), lyrics)
         print (row + " : " + str(max))
         sum += max
 
