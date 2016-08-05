@@ -9,7 +9,7 @@ def get_lyrics():
     songs_links = tree.xpath('//ul/li/a/@href')
     print ('Links: ', len(songs_links))
     lyrics = []
-    for x in range(0, 50):
+    for x in range(0, 200):
         if songs_links[x].__contains__("lyrics/2pac"):
             try:
                 url = "http://www.allthelyrics.com" + songs_links[x]
