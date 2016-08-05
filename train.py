@@ -18,7 +18,7 @@ _NEPOCH = int(os.environ.get('NEPOCH', '20'))
 _MODEL_FILE = os.environ.get('MODEL_FILE')
 
 
-def train_with_sgd(model, X_train, y_train, learning_rate=0.005, nepoch=1, evaluate_loss_after=2):
+def train_with_sgd(model, X_train, y_train, learning_rate=0.005, nepoch=1, evaluate_loss_after=5):
     # We keep track of the losses so we can plot them later
     losses = []
     # we not train the data yet
