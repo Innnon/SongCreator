@@ -76,7 +76,7 @@ def generate_sentence(model,word_to_index, index_to_word):
     # Repeat until we get an end token
     while not new_sentence[-1] == word_to_index[song_end_token]:
         next_word_probs = model.forward_propagation(new_sentence)
-        print ("this is the next prob " + sampled_word)
+        print ("this is the next prob " + next_word_probs)
 
         sampled_word = word_to_index[unknown_token]
         # We don't want to sample unknown words
