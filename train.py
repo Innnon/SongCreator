@@ -76,14 +76,12 @@ def generate_sentence(model,word_to_index, index_to_word):
     # Repeat until we get an end token
     while not new_sentence[-1] == word_to_index[song_end_token]:
         next_word_probs = model.forward_propagation(new_sentence)
-        print ("this is the next prob " + next_word_probs)
 
         sampled_word = word_to_index[unknown_token]
         # We don't want to sample unknown words
         while sampled_word == word_to_index[unknown_token]:
             samples = np.random.multinomial(1, next_word_probs[-1])
             sampled_word = np.argmax(samples)
-        print ("this is sample word " + sampled_word)
         new_sentence.append(sampled_word)
     sentence_str = []
     for x in new_sentence:
