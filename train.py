@@ -63,8 +63,8 @@ def getModel (tokenized_sentences,word_to_index):
     t2 = time.time()
     print "SGD Step time: %f milliseconds" % ((t2 - t1) * 1000.)
 
-    if _MODEL_FILE != None:
-        load_model_parameters_theano(_MODEL_FILE, model)
+    #if _MODEL_FILE != None:
+    #    load_model_parameters_theano(_MODEL_FILE, model)
 
     train_with_sgd(model, x_train, y_train, nepoch=_NEPOCH, learning_rate=_LEARNING_RATE)
     return model
