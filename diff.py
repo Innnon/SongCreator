@@ -36,14 +36,11 @@ def calculate_cosine(sen, senArray):
     return similiar
 
 def calculate_cosine_for_song(song, lyrics):
-    sentencs = []
-    for s in lyrics:
-        for sent in s:
-            sentencs.append(sent)
+
     sum = 0
 
     for row in song:
-        max = calculate_cosine(row, str(sentencs))
+        max = calculate_cosine(row, lyrics)
         print (row + " : " + str(max))
         sum += max
 
