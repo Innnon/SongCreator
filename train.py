@@ -11,14 +11,14 @@ from model_manager import *
 from RNN import RNN
 from Tokenizer import *
 
-_VOCABULARY_SIZE = int(os.environ.get('VOCABULARY_SIZE', '2000'))
+_VOCABULARY_SIZE = int(os.environ.get('VOCABULARY_SIZE', '5000'))
 _HIDDEN_DIM = int(os.environ.get('HIDDEN_DIM', '80'))
 _LEARNING_RATE = float(os.environ.get('LEARNING_RATE', '0.005'))
-_NEPOCH = int(os.environ.get('NEPOCH', '20'))
+_NEPOCH = int(os.environ.get('NEPOCH', '6'))
 _MODEL_FILE = os.environ.get('MODEL_FILE')
 
 
-def train_with_sgd(model, X_train, y_train, learning_rate=0.005, nepoch=1, evaluate_loss_after=5):
+def train_with_sgd(model, X_train, y_train, learning_rate=0.005, nepoch=1, evaluate_loss_after=2):
     # We keep track of the losses so we can plot them later
     losses = []
     # we not train the data yet
