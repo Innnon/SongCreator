@@ -18,7 +18,6 @@ def get_cosine(vec1, vec2):
 
 
 def text_to_vector(text):
-    print (text)
     words = WORD.findall(text)
     return Counter(words)
 
@@ -44,7 +43,6 @@ def calculate_cosine_for_song(song, lyrics):
         for sent in s:
             lyrics_sent.append(sent)
     for row in song:
-        print (row)
         max = calculate_cosine(str(row), lyrics_sent)
         print (row + " : " + str(max))
         sum += max

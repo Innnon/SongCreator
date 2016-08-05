@@ -1,7 +1,7 @@
 from train import *
 from diff import  *
 from Tokenizer import  *
-_VOCABULARY_SIZE = int(os.environ.get('VOCABULARY_SIZE', '5000'))
+_VOCABULARY_SIZE = int(os.environ.get('VOCABULARY_SIZE', '6000'))
 
 
 song_lyrics = get_lyrics()
@@ -38,7 +38,7 @@ for i in range(num_sentences):
     # We want long sentences, not sentences with one or two words
     while len(sent) < senten_min_length:
         sent = generate_sentence(model,word_to_index, index_to_word, sentence_start_token, sentence_end_token)
-    print " ".join(sent)
+    #print " ".join(sent)
     for word in sent:
         ssent += word + " "
     list_song.append(ssent)
