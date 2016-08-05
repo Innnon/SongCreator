@@ -41,12 +41,13 @@ def calculate_cosine_for_song(song, lyrics):
         for sent in s:
             sentencs.append(sent)
     sum = 0
+
     for row in song:
         max = calculate_cosine(row, str(sentencs))
         print (row + " : " + str(max))
         sum += max
 
-    return max / len(song)
+    return sum / len(song)
 
 
 
