@@ -89,7 +89,6 @@ def generate_sentence(model,word_to_index, index_to_word):
     for x in new_sentence:
         print ("this is index: " + x)
         print ("this is word: " + index_to_word[x])
-
         sentence_str.append(index_to_word[x])
     return sentence_str
 
