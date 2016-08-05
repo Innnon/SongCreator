@@ -6,6 +6,7 @@ _VOCABULARY_SIZE = int(os.environ.get('VOCABULARY_SIZE', '5000'))
 
 song_lyrics = get_lyrics()
 song_lyrics = insert_special_token(song_lyrics)
+
 tokenized_sentences = tokenize_song_to_word(song_lyrics)
 vocabulary = create_vocabulary(_VOCABULARY_SIZE, tokenized_sentences)
 index_to_word = map_index_to_word(vocabulary)
@@ -56,7 +57,7 @@ newSong = open ("outputsong.txt", "wb")
 newSong.write(song)
 newSong.close()
 diff = calculate_cosine_for_song(list_song, song_lyrics)
-print (diff)
+print ("similarity: "+ str(diff))
 
 
 
