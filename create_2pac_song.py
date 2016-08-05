@@ -1,5 +1,5 @@
 from train import *
-
+from diff import  *
 
 _VOCABULARY_SIZE = int(os.environ.get('VOCABULARY_SIZE', '5000'))
 
@@ -17,12 +17,14 @@ num_sentences = 40
 senten_min_length = 4
 model = getModel(tokenized_sentences, word_to_index)
 song = ""
+list_song = []
 for i in range(num_sentences):
     sent = []
     # We want long sentences, not sentences with one or two words
     while len(sent) < senten_min_length:
         sent = generate_sentence(model,word_to_index, index_to_word)
     print " ".join(sent)
+    list_song.append(sent)
     for word in sent:
         song += word + " "
     song += "\n"
@@ -30,6 +32,8 @@ for i in range(num_sentences):
 newSong = open ("outputsong.txt", "wb")
 newSong.write(song)
 newSong.close()
+calculate_cosine_for_song(list_song, song_lyrics)
+
 
 
 

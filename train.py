@@ -85,8 +85,8 @@ def generate_sentence(model,word_to_index, index_to_word):
         new_sentence.append(sampled_word)
     sentence_str = []
     for x in new_sentence:
-        print ("this is index: " + x)
-        print ("this is word: " + index_to_word[x])
+        print ("this is index: " + str(x))
+        print ("this is word: " + str(index_to_word[x]))
         sentence_str.append(index_to_word[x])
     return sentence_str
 
