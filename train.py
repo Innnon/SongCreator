@@ -70,11 +70,11 @@ def getModel (tokenized_sentences,word_to_index):
     return model
 
 
-def generate_sentence(model,word_to_index, index_to_word):
+def generate_sentence(model,word_to_index, index_to_word, start, end):
     # We start the sentence with the start token
-    new_sentence = [word_to_index[song_start_token]]
+    new_sentence = [word_to_index[start]]
     # Repeat until we get an end token
-    while not new_sentence[-1] == word_to_index[song_end_token]:
+    while not new_sentence[-1] == word_to_index[end]:
         next_word_probs = model.forward_propagation(new_sentence)
 
         sampled_word = word_to_index[unknown_token]

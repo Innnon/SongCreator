@@ -21,18 +21,22 @@ def insert_special_token(songs_lyric_list):
         for sentence in song:
             counter += 1
             last = counter == len(song)
+
             try:
                 s = str(sentence)
-                if first:
-                    sentences_with_special_token.append(song_start_token + " " + sentence_start_token +
-                                                        " " + s + " " + sentence_end_token)
-                    first = False
+                if "{" in s or "}" in s or "[" in s or "]" in s or "(" in s or ")" in s:
+                    continue
                 else:
-                    if not last:
-                        sentences_with_special_token.append(sentence_start_token +
-                                                        " " + s + " " + sentence_end_token)
+                    if first:
+                        sentences_with_special_token.append(song_start_token + " " + sentence_start_token +
+                                                            " " + s + " " + sentence_end_token)
+                        first = False
                     else:
-                        sentences_with_special_token.append(sentence_start_token + " " + s + " " + sentence_end_token + " " + song_end_token)
+                        if not last:
+                            sentences_with_special_token.append(sentence_start_token +
+                                                            " " + s + " " + sentence_end_token)
+                        else:
+                            sentences_with_special_token.append(sentence_start_token + " " + s + " " + sentence_end_token + " " + song_end_token)
             except ValueError:
                 continue
         song_with_special_token.append(sentences_with_special_token)
