@@ -103,3 +103,5 @@ In the output presented above we got a value of 0.639487393264 similarity, which
 The code we used for calculating the cosine similarity, can be found in [diff.py](https://github.com/Innnon/SongCreator/blob/master/diff.py).
 
 
+As you can notice, the output song is very similar to 2PAC songs, we think that if we will enlarge the input, by providing the algorithm more lyrics we will get a better result, although we think this output is impressive.
+
