@@ -1,13 +1,6 @@
-import csv
-import itertools
-import operator
-import numpy as np
-import nltk
 import sys
 import os
-import time
-from datetime import datetime
-from model_manager import *
+
 from RNN import RNN
 from Tokenizer import *
 
@@ -26,19 +19,14 @@ def train_with_sgd(model, X_train, y_train, learning_rate=0.005, nepoch=1, evalu
     # start to train the model, each time we want to minimize the error more
     for epoch in range(nepoch):
         # Optionally evaluate the loss, every evaluate_loss_after
-        if (epoch % evaluate_loss_after == 0):
+        if epoch % evaluate_loss_after == 0:
             loss = model.calculate_loss(X_train, y_train)
             losses.append((num_examples_seen, loss))
-            time = datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
-            print "%s: Loss after num_examples_seen=%d epoch=%d: %f" % (time, num_examples_seen, epoch, loss)
             # Adjust the learning rate if loss increases
-            if (len(losses) > 1 and losses[-1][1] > losses[-2][1]):
-                learning_rate = learning_rate * 0.5
-                print "Setting learning rate to %f" % learning_rate
+            if len(losses) > 1 and losses[-1][1] > losses[-2][1]:
+                learning_rate *= 0.5
             sys.stdout.flush()
-            # ADDED! Saving model oarameters
-            save_model_parameters_theano("./data/rnn-theano-%d-%d-%s.npz" % (model.hidden_dim, model.word_dim, time),
-                                         model)
+
         # For each training example...
         for i in range(len(y_train)):
             # One SGD step
@@ -47,28 +35,16 @@ def train_with_sgd(model, X_train, y_train, learning_rate=0.005, nepoch=1, evalu
         print (epoch)
 
 
-
-
-def getModel (tokenized_sentences,word_to_index):
-
-
+def getModel(tokenized_sentences, word_to_index):
     x_train = get_x_train(tokenized_sentences, word_to_index)
     y_train = get_y_train(tokenized_sentences, word_to_index)
 
     model = RNN(_VOCABULARY_SIZE, hidden_dim=_HIDDEN_DIM)
-    t1 = time.time()
-    model.sgd_step(x_train[10], y_train[10], _LEARNING_RATE)
-    t2 = time.time()
-    print "SGD Step time: %f milliseconds" % ((t2 - t1) * 1000.)
-
-    #if _MODEL_FILE != None:
-    #    load_model_parameters_theano(_MODEL_FILE, model)
-
     train_with_sgd(model, x_train, y_train, nepoch=_NEPOCH, learning_rate=_LEARNING_RATE)
     return model
 
 
-def generate_sentence(model,word_to_index, index_to_word, start, end):
+def generate_sentence(model, word_to_index, index_to_word, start, end):
     # We start the sentence with the start token
     new_sentence = [word_to_index[start]]
     # Repeat until we get an end token
@@ -87,4 +63,6 @@ def generate_sentence(model,word_to_index, index_to_word, start, end):
     return sentence_str
 
 
-
+def softmax(x):
+    xt = np.exp(x - np.max(x))
+    return xt / np.sum(xt)
